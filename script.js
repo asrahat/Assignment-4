@@ -175,20 +175,7 @@ mainContainer.addEventListener("click", function (event) {
 function randarInterView(){
     if(interviewList.length == '0'){
 
-        filteredSection.innerHTML = `
-        <div class="bg-white rounded-xl shadow-md p-10 text-center">
-            <div class="flex justify-center mb-6">
-              <img src="/assets/jobs.png" alt="" />
-            </div>
-            <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">
-              No jobs available
-            </h3>
-    
-            <p class="text-gray-500 mt-2 text-sm sm:text-base">
-              Check back soon for new job opportunities
-            </p>
-          </div>
-        `;
+        filteredSection.innerHTML = "" ;
     }else{
 
         for(let interview of interviewList){
