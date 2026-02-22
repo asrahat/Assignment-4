@@ -11,8 +11,9 @@
   </head>
 
   <body class="bg-gradient-to-br-from-gray-100 to-gray-200 min-h-screen">
-    <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+    
       <!-- Header -->
+        <header class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 text-gray-800">
         Job Application Tracker
       </h1>
@@ -40,8 +41,10 @@
           <h2 id="rejectedCount" class="text-3xl font-bold text-red-500">0</h2>
         </div>
       </div>
-
-      <!-- Filter Buttons -->
+        </header>
+    <!-- Main -->
+      <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- Filter Buttons -->
       <div class="space-y-5 mb-6 gap-4">
         <div class="flex justify-between">
           <h2 class="text-lg sm:text-xl font-semibold text-gray-700">
@@ -76,6 +79,11 @@
           </button>
         </div>
       </div>
+
+      <!-- Filtered Section -->
+       <section id="filtered-section" class="hidden">
+
+       </section>
 
       <!-- Job Cards -->
       <section id="allCards" class="space-y-8">
@@ -409,8 +417,10 @@
           </div>
         </div>
       </section>
-    </div>
+    
 
+      </main>
+  
 
     <script src="script.js"></script>
   </body>
