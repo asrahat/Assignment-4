@@ -7,13 +7,18 @@
     <!-- tailwind Css -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- font-awesome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
 
   <body class="bg-gradient-to-br-from-gray-100 to-gray-200 min-h-screen">
-    
-      <!-- Header -->
-        <header class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- Header -->
+    <header class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 text-gray-800">
         Job Application Tracker
       </h1>
@@ -31,7 +36,9 @@
           class="bg-white shadow-md hover:shadow-xl transition duration-300 rounded-xl p-6 text-center"
         >
           <p class="text-gray-500 text-sm">Interview</p>
-          <h2 id="interviewCount" class="text-3xl font-bold text-green-500">0</h2>
+          <h2 id="interviewCount" class="text-3xl font-bold text-green-500">
+            0
+          </h2>
         </div>
 
         <div
@@ -41,10 +48,10 @@
           <h2 id="rejectedCount" class="text-3xl font-bold text-red-500">0</h2>
         </div>
       </div>
-        </header>
+    </header>
     <!-- Main -->
-      <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
-    <!-- Filter Buttons -->
+    <main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+      <!-- Filter Buttons -->
       <div class="space-y-5 mb-6 gap-4">
         <div class="flex justify-between">
           <h2 class="text-lg sm:text-xl font-semibold text-gray-700">
@@ -56,23 +63,23 @@
         <div class="flex gap-3 flex-wrap">
           <button
             onclick="toggleStyle('all-filter-btn')"
-          id="all-filter-btn"
+            id="all-filter-btn"
             class="px-5 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
           >
             All
           </button>
 
           <button
-          onclick="toggleStyle('interview-filter-btn')"
-          id="interview-filter-btn"
+            onclick="toggleStyle('interview-filter-btn')"
+            id="interview-filter-btn"
             class="px-5 py-2 text-sm font-medium rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 hover:shadow-md transform hover:-translate-y-1 active:scale-95 transition duration-300"
           >
             Interview
           </button>
 
           <button
-          onclick="toggleStyle('rejected-filter-btn')"
-          id="rejected-filter-btn"
+            onclick="toggleStyle('rejected-filter-btn')"
+            id="rejected-filter-btn"
             class="px-5 py-2 text-sm font-medium rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 hover:shadow-md transform hover:-translate-y-1 active:scale-95 transition duration-300"
           >
             Rejected
@@ -81,9 +88,9 @@
       </div>
 
       <!-- Filtered Section -->
-       <section id="filtered-section" class="hidden">
-
-       </section>
+      <section id="filtered-section" class="hidden"></section>
+      <!-- no jobs available message -->
+      
 
       <!-- Job Cards -->
       <section id="allCards" class="space-y-8">
@@ -97,8 +104,10 @@
                 TechNova Solutions
               </h3>
               <p class="position text-gray-500 text-sm">Frontend Developer</p>
-              <p class=" text-gray-400 text-sm mt-1">
-                <span class="location">Dhaka, Bangladesh</span> • <span class="type">Full-time</span> • <span class="salary">$120,000 - $150,000</span>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Dhaka, Bangladesh</span> •
+                <span class="type">Full-time</span> •
+                <span class="salary">$120,000 - $150,000</span>
               </p>
 
               <span
@@ -108,7 +117,9 @@
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-                Looking for a skilled frontend developer with experience in React and Tailwind CSS to build modern responsive web applications.
+                Looking for a skilled frontend developer with experience in
+                React and Tailwind CSS to build modern responsive web
+                applications.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
@@ -117,7 +128,7 @@
                   Interview
                 </button>
 
-                 <button
+                <button
                   class="rejected-btn px-5 py-2 text-sm font-medium rounded-lg bg-red-500 text-white hover:bg-red-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Rejected
@@ -136,23 +147,24 @@
                 CloudMatrix Ltd.
               </h3>
               <p class="position text-gray-500 text-sm">Backend Developer</p>
-              <p class=" text-gray-400 text-sm mt-1">
-                <span class="location">Remote</span> • <span class="type">Full-time</span> • <span class="salary">$80,000 - $120,000</span>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Remote</span> •
+                <span class="type">Full-time</span> •
+                <span class="salary">$80,000 - $120,000</span>
               </p>
 
               <span
-
                 class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full"
               >
                 NOT APPLIED
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-                Seeking a backend developer proficient in Node.js and MongoDB to design scalable APIs and database systems.
+                Seeking a backend developer proficient in Node.js and MongoDB to
+                design scalable APIs and database systems.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
-
                   class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Interview
@@ -174,26 +186,27 @@
           <div class="flex flex-col lg:flex-row lg:justify-between gap-6">
             <div>
               <h3 class="companyName text-xl font-semibold text-gray-800">
-               Data Analyst
+                Data Analyst
               </h3>
               <p class="position text-gray-500 text-sm">Backend Developer</p>
-              <p class=" text-gray-400 text-sm mt-1">
-                <span class="location">Chattogram, Bangladesh</span> • <span class="type">Full-time</span> • <span class="salary">$50,000 - $75,000</span>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Chattogram, Bangladesh</span> •
+                <span class="type">Full-time</span> •
+                <span class="salary">$50,000 - $75,000</span>
               </p>
 
               <span
-
                 class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full"
               >
                 NOT APPLIED
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-                Analyze business data and generate insights using Excel, SQL, and Power BI to support strategic decisions.
+                Analyze business data and generate insights using Excel, SQL,
+                and Power BI to support strategic decisions.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
-
                   class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Interview
@@ -215,26 +228,27 @@
           <div class="flex flex-col lg:flex-row lg:justify-between gap-6">
             <div>
               <h3 class="companyName text-xl font-semibold text-gray-800">
-              PixelCraft Studio
+                PixelCraft Studio
               </h3>
               <p class="position text-gray-500 text-sm">UI/UX Designer</p>
-              <p class=" text-gray-400 text-sm mt-1">
-                <span class="location">Sylhet, Bangladesh</span> • <span class="type">Full-time</span> • <span class="salary">$40,000 - $65,000</span>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Sylhet, Bangladesh</span> •
+                <span class="type">Full-time</span> •
+                <span class="salary">$40,000 - $65,000</span>
               </p>
 
               <span
-
                 class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full"
               >
                 NOT APPLIED
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-                Design user-friendly interfaces and improve user experiences for web and mobile applications.
+                Design user-friendly interfaces and improve user experiences for
+                web and mobile applications.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
-
                   class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Interview
@@ -256,26 +270,27 @@
           <div class="flex flex-col lg:flex-row lg:justify-between gap-6">
             <div>
               <h3 class="companyName text-xl font-semibold text-gray-800">
-               NextGen IT
+                NextGen IT
               </h3>
               <p class="position text-gray-500 text-sm">Full Stack Developer</p>
-              <p class=" text-gray-400 text-sm mt-1">
-               <span class="location">Dhaka, Bangladesh</span> • <span class="type">Full-time</span> • <span class="salary">$90,000 - $140,000</span>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Dhaka, Bangladesh</span> •
+                <span class="type">Full-time</span> •
+                <span class="salary">$90,000 - $140,000</span>
               </p>
 
               <span
-
                 class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full"
               >
                 NOT APPLIED
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-               Build and maintain full-stack applications using React, Node.js, and PostgreSQL.
+                Build and maintain full-stack applications using React, Node.js,
+                and PostgreSQL.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
-
                   class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Interview
@@ -289,9 +304,7 @@
               </div>
             </div>
           </div>
-          <div>
-
-          </div>
+          <div></div>
         </div>
         <!-- Card 6-->
         <div
@@ -300,26 +313,29 @@
           <div class="flex flex-col lg:flex-row lg:justify-between gap-6">
             <div>
               <h3 class="companyName text-xl font-semibold text-gray-800">
-              CyberSecure BD
+                CyberSecure BD
               </h3>
-              <p class="position text-gray-500 text-sm">Cyber Security Specialist</p>
-              <p class=" text-gray-400 text-sm mt-1">
-                <span class="location">Remote</span> • <span class="type">Part-time</span> • <span class="salary">$70,000 - $110,000</span>
+              <p class="position text-gray-500 text-sm">
+                Cyber Security Specialist
+              </p>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Remote</span> •
+                <span class="type">Part-time</span> •
+                <span class="salary">$70,000 - $110,000</span>
               </p>
 
               <span
-
                 class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full"
               >
                 NOT APPLIED
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-               Protect company infrastructure by implementing security protocols and monitoring system vulnerabilities.
+                Protect company infrastructure by implementing security
+                protocols and monitoring system vulnerabilities.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
-
                   class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Interview
@@ -341,26 +357,27 @@
           <div class="flex flex-col lg:flex-row lg:justify-between gap-6">
             <div>
               <h3 class="companyName text-xl font-semibold text-gray-800">
-               BrightApps Limited
+                BrightApps Limited
               </h3>
               <p class="position text-gray-500 text-sm">Mobile App Developer</p>
-              <p class=" text-gray-400 text-sm mt-1">
-                <span class="location">Khulna, Bangladesh</span> • <span class="type">Full-time</span> • <span class="salary">$50,000 - $950,000</span>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Khulna, Bangladesh</span> •
+                <span class="type">Full-time</span> •
+                <span class="salary">$50,000 - $950,000</span>
               </p>
 
               <span
-
                 class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full"
               >
                 NOT APPLIED
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-               Develop cross-platform mobile apps using Flutter or React Native for Android and iOS.
+                Develop cross-platform mobile apps using Flutter or React Native
+                for Android and iOS.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
-
                   class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Interview
@@ -382,26 +399,29 @@
           <div class="flex flex-col lg:flex-row lg:justify-between gap-6">
             <div>
               <h3 class="companyName text-xl font-semibold text-gray-800">
-               AI Vision Tech
+                AI Vision Tech
               </h3>
-              <p class="position text-gray-500 text-sm">Machine Learning Engineer</p>
-              <p class=" text-gray-400 text-sm mt-1">
-                <span class="location">Dhaka, Bangladesh</span> • <span class="type">Full-time</span> • <span class="salary">$50,000 - $750,000</span>
+              <p class="position text-gray-500 text-sm">
+                Machine Learning Engineer
+              </p>
+              <p class="text-gray-400 text-sm mt-1">
+                <span class="location">Dhaka, Bangladesh</span> •
+                <span class="type">Full-time</span> •
+                <span class="salary">$50,000 - $750,000</span>
               </p>
 
               <span
-
                 class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full"
               >
                 NOT APPLIED
               </span>
 
               <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
-                Build and deploy machine learning models using Python, TensorFlow, and real-world datasets.
+                Build and deploy machine learning models using Python,
+                TensorFlow, and real-world datasets.
               </p>
               <div class="flex gap-3 mt-4">
                 <button
-
                   class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-1 active:scale-95 transition duration-300"
                 >
                   Interview
@@ -417,10 +437,7 @@
           </div>
         </div>
       </section>
-    
-
-      </main>
-  
+    </main>
 
     <script src="script.js"></script>
   </body>
