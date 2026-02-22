@@ -1,94 +1,81 @@
 
-
 let interviewList = [];
 let rejectedList = [];
-let currentFilter = "all";
-
-
-// Select Important Elements
-
+let currentStatus = "all";
 
 const totalCount = document.getElementById("totalCount");
 const totalCountJobs = document.getElementById("totalCountJobs");
 const interviewCount = document.getElementById("interviewCount");
 const rejectedCount = document.getElementById("rejectedCount");
 
-const allCardsSection = document.getElementById("allCards");
-const filteredSection = document.getElementById("filtered-section");
+const allCardSection = document.getElementById("allCards");
 const mainContainer = document.querySelector("main");
+const filteredSection = document.getElementById("filtered-section");
+
+const allFilterBtn = document.getElementById("all-filter-btn");
+const interviewFilterBtn = document.getElementById("interview-filter-btn");
+const rejectedFilterBtn = document.getElementById("rejected-filter-btn");
 
 
-// Count Update Function
-
-function updateCounts() {
-  totalCount.innerText = allCardsSection.children.length;
-
-  if (currentFilter === "interview") {
-    totalCountJobs.innerText = interviewList.length;
-  } else if (currentFilter === "rejected") {
-    totalCountJobs.innerText = rejectedList.length;
-  } else {
-    totalCountJobs.innerText = allCardsSection.children.length;
-  }
+// Count Function
+function calculateCount() {
+  totalCount.innerText = allCardSection.children.length;
+  totalCountJobs.innerText =
+    currentStatus === "interview"
+      ? interviewList.length
+      : currentStatus === "rejected"
+      ? rejectedList.length
+      : allCardSection.children.length;
 
   interviewCount.innerText = interviewList.length;
   rejectedCount.innerText = rejectedList.length;
 }
 
-updateCounts();
-// Filter Button Function
+calculateCount();
+
+// Filter Toggle
+
 function toggleStyle(id) {
-  const allBtn = document.getElementById("all-filter-btn");
-  const interviewBtn = document.getElementById("interview-filter-btn");
-  const rejectedBtn = document.getElementById("rejected-filter-btn");
+  allFilterBtn.classList.remove("bg-blue-600", "text-white");
+  interviewFilterBtn.classList.remove("bg-blue-600", "text-white");
+  rejectedFilterBtn.classList.remove("bg-blue-600", "text-white");
 
-  // all button styles
-  allBtn.classList.remove("bg-blue-600", "text-white");
-  interviewBtn.classList.remove("bg-blue-600", "text-white");
-  rejectedBtn.classList.remove("bg-blue-600", "text-white");
+  allFilterBtn.classList.add("bg-gray-200", "text-gray-700");
+  interviewFilterBtn.classList.add("bg-gray-200", "text-gray-700");
+  rejectedFilterBtn.classList.add("bg-gray-200", "text-gray-700");
 
-  allBtn.classList.add("bg-gray-200", "text-gray-700");
-  interviewBtn.classList.add("bg-gray-200", "text-gray-700");
-  rejectedBtn.classList.add("bg-gray-200", "text-gray-700");
+  const selected = document.getElementById(id);
+  selected.classList.remove("bg-gray-200", "text-gray-700");
+  selected.classList.add("bg-blue-600", "text-white");
 
-  const clickedBtn = document.getElementById(id);
-  clickedBtn.classList.remove("bg-gray-200", "text-gray-700");
-  clickedBtn.classList.add("bg-blue-600", "text-white");
-
-  // Show section
   if (id === "interview-filter-btn") {
-    currentFilter = "interview";
-    allCardsSection.classList.add("hidden");
+    currentStatus = "interview";
+    allCardSection.classList.add("hidden");
     filteredSection.classList.remove("hidden");
     renderInterview();
   } else if (id === "rejected-filter-btn") {
-    currentFilter = "rejected";
-    allCardsSection.classList.add("hidden");
+    currentStatus = "rejected";
+    allCardSection.classList.add("hidden");
     filteredSection.classList.remove("hidden");
     renderRejected();
   } else {
-    currentFilter = "all";
-    allCardsSection.classList.remove("hidden");
+    currentStatus = "all";
+    allCardSection.classList.remove("hidden");
     filteredSection.classList.add("hidden");
   }
 
-  updateCounts();
+  calculateCount();
 }
 
-
-// Main Click Event)
+// Main 
 
 
 mainContainer.addEventListener("click", function (event) {
   const card = event.target.parentNode.parentNode.parentNode;
-  if (!card){
-     return
-  }
+  if (!card) return;
 
   const companyName = card.querySelector(".companyName")?.innerText;
-  if (!companyName){
-     return
-  }
+  if (!companyName) return;
 
   const position = card.querySelector(".position")?.innerText;
   const location = card.querySelector(".location")?.innerText;
@@ -96,11 +83,11 @@ mainContainer.addEventListener("click", function (event) {
   const salary = card.querySelector(".salary")?.innerText;
   const description = card.querySelector(".description")?.innerText;
 
-  // ================= Interview Button =================
+  // ================= Interview =================
   if (event.target.classList.contains("interview-btn")) {
     card.querySelector(".status").innerText = "Interview";
 
-    const job = {
+    const cardInfo = {
       companyName,
       position,
       location,
@@ -110,30 +97,29 @@ mainContainer.addEventListener("click", function (event) {
       description,
     };
 
-    // Add to interview list if not exists
-    const exists = interviewList.find(
-      (item) => item.companyName === companyName,
-    );
-    if (!exists) {
-      interviewList.push(job);
+    if (!interviewList.find((item) => item.companyName === companyName)) {
+      interviewList.push(cardInfo);
     }
 
-    // Remove from rejected list
     rejectedList = rejectedList.filter(
-      (item) => item.companyName !== companyName,
+      (item) => item.companyName !== companyName
     );
 
-    if (currentFilter === "interview") renderInterview();
-    if (currentFilter === "rejected") renderRejected();
+    if (currentStatus === "interview") {
+        renderInterview();
+    }
+    if (currentStatus === "rejected") {
+        renderRejected();
+    }
 
-    updateCounts();
+    calculateCount();
   }
 
-  // Rejected Button 
+  //  Rejected
   else if (event.target.classList.contains("rejected-btn")) {
     card.querySelector(".status").innerText = "Rejected";
 
-    const job = {
+    const cardInfo = {
       companyName,
       position,
       location,
@@ -143,49 +129,49 @@ mainContainer.addEventListener("click", function (event) {
       description,
     };
 
-    const exists = rejectedList.find(
-      (item) => item.companyName === companyName,
-    );
-    if (!exists) {
-      rejectedList.push(job);
+    if (!rejectedList.find((item) => item.companyName === companyName)) {
+      rejectedList.push(cardInfo);
     }
 
     interviewList = interviewList.filter(
-      (item) => item.companyName !== companyName,
+      (item) => item.companyName !== companyName
     );
 
-    if (currentFilter === "interview") renderInterview();
-    if (currentFilter === "rejected") renderRejected();
+    if (currentStatus === "interview"){
+         renderInterview();
+    }
+    if (currentStatus === "rejected") {
+        renderRejected();
+    }
 
-    updateCounts();
+    calculateCount();
   }
 
-  // Delete Button 
+  // Delete
   else if (event.target.classList.contains("delete-btn")) {
-    // Remove from both lists
     interviewList = interviewList.filter(
-      (item) => item.companyName !== companyName,
+      (item) => item.companyName !== companyName
     );
+
     rejectedList = rejectedList.filter(
-      (item) => item.companyName !== companyName,
+      (item) => item.companyName !== companyName
     );
 
     card.remove();
 
-    if (currentFilter === "interview"){
+    if (currentStatus === "interview"){
          renderInterview();
     }
-    if (currentFilter === "rejected"){
+    if (currentStatus === "rejected"){
          renderRejected();
     }
 
-    updateCounts();
+    calculateCount();
   }
 });
 
-// ===============================
-// 6️⃣ Render Interview Section
-// ===============================
+// Render Interview
+
 
 function renderInterview() {
   filteredSection.innerHTML = "";
@@ -200,9 +186,8 @@ function renderInterview() {
   });
 }
 
-// ===============================
-// 7️⃣ Render Rejected Section
-// ===============================
+// Render Rejected
+
 
 function renderRejected() {
   filteredSection.innerHTML = "";
@@ -217,46 +202,51 @@ function renderRejected() {
   });
 }
 
-// ===============================
-// 8️⃣ Create Card Function
-// ===============================
+
+// Create Card
+
 
 function createCard(job) {
   const div = document.createElement("div");
-  div.className = "bg-white shadow-md rounded-xl p-6";
+  div.className =
+    "bg-white shadow-md hover:shadow-2xl hover:-translate-y-1 transition duration-300 rounded-xl p-6";
 
   div.innerHTML = `
-    <h3 class="companyName text-xl font-semibold">${job.companyName}</h3>
-    <p class="position text-sm text-gray-500">${job.position}</p>
-    <p class="text-sm text-gray-400 mt-1">
-      <span class="location">${job.location}</span> •
-      <span class="type">${job.type}</span> •
-      <span class="salary">${job.salary}</span>
-    </p>
+      <h3 class="companyName text-xl font-semibold text-gray-800">
+        ${job.companyName}
+      </h3>
+      <p class="position text-gray-500 text-sm">${job.position}</p>
+      <p class="text-gray-400 text-sm mt-1">
+        <span class="location">${job.location}</span> • 
+        <span class="type">${job.type}</span> • 
+        <span class="salary">${job.salary}</span>
+      </p>
 
-    <span class="status inline-block mt-3 text-xs bg-gray-200 px-3 py-1 rounded-full">
-      ${job.status}
-    </span>
+      <span class="status inline-block mt-3 text-xs font-medium bg-gray-200 text-gray-600 px-3 py-1 rounded-full">
+        ${job.status}
+      </span>
 
-    <p class="description text-sm text-gray-600 mt-4">
-      ${job.description}
-    </p>
+      <p class="description text-gray-600 text-sm mt-4 leading-relaxed">
+        ${job.description}
+      </p>
 
-    <div class="flex gap-3 mt-4">
-      <button class="interview-btn bg-green-500 text-white px-4 py-2 rounded">
-        Interview
-      </button>
-      <button class="rejected-btn bg-red-500 text-white px-4 py-2 rounded">
-        Rejected
-      </button>
-      <p class="delete-btn text-red-500 cursor-pointer">delete</p>
-    </div>
-  `;
+      <div class="flex gap-3 mt-4">
+        <button class="interview-btn px-5 py-2 text-sm font-medium rounded-lg bg-green-500 text-white">
+          Interview
+        </button>
+        <button class="rejected-btn px-5 py-2 text-sm font-medium rounded-lg bg-red-500 text-white">
+          Rejected
+        </button>
+        <p class="delete-btn cursor-pointer text-red-500 font-medium">delete</p>
+      </div>
+    `;
 
   return div;
 }
 
-// No Job Message
+// ================================
+// No Job UI
+
 
 function noJobMessage() {
   return `
@@ -271,3 +261,4 @@ function noJobMessage() {
     </div>
   `;
 }
+
