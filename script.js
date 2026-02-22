@@ -6,7 +6,6 @@ let interviewList = [];
 let rejectedList = [];
 let currentFilter = "all";
 
-
 // ===============================
 // 2️⃣ Select Important Elements
 // ===============================
@@ -20,7 +19,6 @@ const allCardsSection = document.getElementById("allCards");
 const filteredSection = document.getElementById("filtered-section");
 const mainContainer = document.querySelector("main");
 
-
 // ===============================
 // 3️⃣ Count Update Function
 // ===============================
@@ -30,11 +28,9 @@ function updateCounts() {
 
   if (currentFilter === "interview") {
     totalCountJobs.innerText = interviewList.length;
-  } 
-  else if (currentFilter === "rejected") {
+  } else if (currentFilter === "rejected") {
     totalCountJobs.innerText = rejectedList.length;
-  } 
-  else {
+  } else {
     totalCountJobs.innerText = allCardsSection.children.length;
   }
 
@@ -44,13 +40,11 @@ function updateCounts() {
 
 updateCounts();
 
-
 // ===============================
 // 4️⃣ Filter Button Function
 // ===============================
 
 function toggleStyle(id) {
-
   const allBtn = document.getElementById("all-filter-btn");
   const interviewBtn = document.getElementById("interview-filter-btn");
   const rejectedBtn = document.getElementById("rejected-filter-btn");
@@ -68,21 +62,18 @@ function toggleStyle(id) {
   clickedBtn.classList.remove("bg-gray-200", "text-gray-700");
   clickedBtn.classList.add("bg-blue-600", "text-white");
 
-
   // Show correct section
   if (id === "interview-filter-btn") {
     currentFilter = "interview";
     allCardsSection.classList.add("hidden");
     filteredSection.classList.remove("hidden");
     renderInterview();
-  } 
-  else if (id === "rejected-filter-btn") {
+  } else if (id === "rejected-filter-btn") {
     currentFilter = "rejected";
     allCardsSection.classList.add("hidden");
     filteredSection.classList.remove("hidden");
     renderRejected();
-  } 
-  else {
+  } else {
     currentFilter = "all";
     allCardsSection.classList.remove("hidden");
     filteredSection.classList.add("hidden");
@@ -91,13 +82,11 @@ function toggleStyle(id) {
   updateCounts();
 }
 
-
 // ===============================
 // 5️⃣ Main Click Event (Event Delegation)
 // ===============================
 
 mainContainer.addEventListener("click", function (event) {
-
   const card = event.target.closest(".bg-white");
   if (!card) return;
 
@@ -110,10 +99,8 @@ mainContainer.addEventListener("click", function (event) {
   const salary = card.querySelector(".salary")?.innerText;
   const description = card.querySelector(".description")?.innerText;
 
-
   // ================= Interview Button =================
   if (event.target.classList.contains("interview-btn")) {
-
     card.querySelector(".status").innerText = "Interview";
 
     const job = {
@@ -123,17 +110,21 @@ mainContainer.addEventListener("click", function (event) {
       type,
       salary,
       status: "Interview",
-      description
+      description,
     };
 
     // Add to interview list if not exists
-    const exists = interviewList.find(item => item.companyName === companyName);
+    const exists = interviewList.find(
+      (item) => item.companyName === companyName,
+    );
     if (!exists) {
       interviewList.push(job);
     }
 
     // Remove from rejected list
-    rejectedList = rejectedList.filter(item => item.companyName !== companyName);
+    rejectedList = rejectedList.filter(
+      (item) => item.companyName !== companyName,
+    );
 
     if (currentFilter === "interview") renderInterview();
     if (currentFilter === "rejected") renderRejected();
@@ -141,10 +132,8 @@ mainContainer.addEventListener("click", function (event) {
     updateCounts();
   }
 
-
   // ================= Rejected Button =================
   else if (event.target.classList.contains("rejected-btn")) {
-
     card.querySelector(".status").innerText = "Rejected";
 
     const job = {
@@ -154,15 +143,19 @@ mainContainer.addEventListener("click", function (event) {
       type,
       salary,
       status: "Rejected",
-      description
+      description,
     };
 
-    const exists = rejectedList.find(item => item.companyName === companyName);
+    const exists = rejectedList.find(
+      (item) => item.companyName === companyName,
+    );
     if (!exists) {
       rejectedList.push(job);
     }
 
-    interviewList = interviewList.filter(item => item.companyName !== companyName);
+    interviewList = interviewList.filter(
+      (item) => item.companyName !== companyName,
+    );
 
     if (currentFilter === "interview") renderInterview();
     if (currentFilter === "rejected") renderRejected();
@@ -170,13 +163,15 @@ mainContainer.addEventListener("click", function (event) {
     updateCounts();
   }
 
-
   // ================= Delete Button =================
   else if (event.target.classList.contains("delete-btn")) {
-
     // Remove from both lists
-    interviewList = interviewList.filter(item => item.companyName !== companyName);
-    rejectedList = rejectedList.filter(item => item.companyName !== companyName);
+    interviewList = interviewList.filter(
+      (item) => item.companyName !== companyName,
+    );
+    rejectedList = rejectedList.filter(
+      (item) => item.companyName !== companyName,
+    );
 
     // Remove from DOM
     card.remove();
@@ -186,48 +181,47 @@ mainContainer.addEventListener("click", function (event) {
 
     updateCounts();
   }
-
 });
-
 
 // ===============================
 // 6️⃣ Render Interview Section
 // ===============================
 
 function renderInterview() {
-
   filteredSection.innerHTML = "";
 
- 
+  if (interviewList.length === 0) {
+    filteredSection.innerHTML = noJobMessage();
+    return;
+  }
 
-  interviewList.forEach(job => {
+  interviewList.forEach((job) => {
     filteredSection.appendChild(createCard(job));
   });
 }
-
 
 // ===============================
 // 7️⃣ Render Rejected Section
 // ===============================
 
 function renderRejected() {
-
   filteredSection.innerHTML = "";
 
-  
+  if (rejectedList.length === 0) {
+    filteredSection.innerHTML = noJobMessage();
+    return;
+  }
 
-  rejectedList.forEach(job => {
+  rejectedList.forEach((job) => {
     filteredSection.appendChild(createCard(job));
   });
 }
-
 
 // ===============================
 // 8️⃣ Create Card Function
 // ===============================
 
 function createCard(job) {
-
   const div = document.createElement("div");
   div.className = "bg-white shadow-md rounded-xl p-6";
 
@@ -262,3 +256,18 @@ function createCard(job) {
   return div;
 }
 
+// No Job Message
+
+function noJobMessage() {
+  return `
+    <div class="bg-white rounded-xl shadow-md p-10 text-center">
+    <div class="flex justify-center mb-6"> <img src="/assets/jobs.png" alt="" /> </div>
+      <h3 class="text-xl font-semibold text-gray-800">
+        No jobs available
+      </h3>
+      <p class="text-gray-500 mt-2">
+        Check back soon for new job opportunities
+      </p>
+    </div>
+  `;
+}
