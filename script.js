@@ -1,14 +1,12 @@
-// ===============================
-// 1️⃣ Data Storage
-// ===============================
+
 
 let interviewList = [];
 let rejectedList = [];
 let currentFilter = "all";
 
-// ===============================
-// 2️⃣ Select Important Elements
-// ===============================
+
+// Select Important Elements
+
 
 const totalCount = document.getElementById("totalCount");
 const totalCountJobs = document.getElementById("totalCountJobs");
@@ -19,9 +17,8 @@ const allCardsSection = document.getElementById("allCards");
 const filteredSection = document.getElementById("filtered-section");
 const mainContainer = document.querySelector("main");
 
-// ===============================
-// 3️⃣ Count Update Function
-// ===============================
+
+// Count Update Function
 
 function updateCounts() {
   totalCount.innerText = allCardsSection.children.length;
@@ -39,17 +36,13 @@ function updateCounts() {
 }
 
 updateCounts();
-
-// ===============================
-// 4️⃣ Filter Button Function
-// ===============================
-
+// Filter Button Function
 function toggleStyle(id) {
   const allBtn = document.getElementById("all-filter-btn");
   const interviewBtn = document.getElementById("interview-filter-btn");
   const rejectedBtn = document.getElementById("rejected-filter-btn");
 
-  // Reset all button styles
+  // all button styles
   allBtn.classList.remove("bg-blue-600", "text-white");
   interviewBtn.classList.remove("bg-blue-600", "text-white");
   rejectedBtn.classList.remove("bg-blue-600", "text-white");
@@ -62,7 +55,7 @@ function toggleStyle(id) {
   clickedBtn.classList.remove("bg-gray-200", "text-gray-700");
   clickedBtn.classList.add("bg-blue-600", "text-white");
 
-  // Show correct section
+  // Show section
   if (id === "interview-filter-btn") {
     currentFilter = "interview";
     allCardsSection.classList.add("hidden");
@@ -82,16 +75,20 @@ function toggleStyle(id) {
   updateCounts();
 }
 
-// ===============================
-// 5️⃣ Main Click Event (Event Delegation)
-// ===============================
+
+// Main Click Event)
+
 
 mainContainer.addEventListener("click", function (event) {
-  const card = event.target.closest(".bg-white");
-  if (!card) return;
+  const card = event.target.parentNode.parentNode.parentNode;
+  if (!card){
+     return
+  }
 
   const companyName = card.querySelector(".companyName")?.innerText;
-  if (!companyName) return;
+  if (!companyName){
+     return
+  }
 
   const position = card.querySelector(".position")?.innerText;
   const location = card.querySelector(".location")?.innerText;
@@ -132,7 +129,7 @@ mainContainer.addEventListener("click", function (event) {
     updateCounts();
   }
 
-  // ================= Rejected Button =================
+  // Rejected Button 
   else if (event.target.classList.contains("rejected-btn")) {
     card.querySelector(".status").innerText = "Rejected";
 
@@ -163,7 +160,7 @@ mainContainer.addEventListener("click", function (event) {
     updateCounts();
   }
 
-  // ================= Delete Button =================
+  // Delete Button 
   else if (event.target.classList.contains("delete-btn")) {
     // Remove from both lists
     interviewList = interviewList.filter(
@@ -173,11 +170,14 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName !== companyName,
     );
 
-    // Remove from DOM
     card.remove();
 
-    if (currentFilter === "interview") renderInterview();
-    if (currentFilter === "rejected") renderRejected();
+    if (currentFilter === "interview"){
+         renderInterview();
+    }
+    if (currentFilter === "rejected"){
+         renderRejected();
+    }
 
     updateCounts();
   }
