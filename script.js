@@ -248,9 +248,7 @@ function createCard(job) {
   return div;
 }
 
-// ================================
-// No Job UI
-
+// No Job Message
 
 function noJobMessage() {
   return `
