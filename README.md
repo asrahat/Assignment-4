@@ -63,7 +63,7 @@ document.body.appnedChild(div);
 - Event Delegation means One parent that controls all children
 - we add one event listener to their parent and this event listener handle everything from there.
 
-## What is the difference between preventDefault() and stopPropagation() methods?
+## 5. What is the difference between preventDefault() and stopPropagation() methods?
 
 ### 🔹 preventDefault()
 - it prevent the default browser action.
