@@ -71,7 +71,7 @@ function toggleStyle(id) {
 
 
 mainContainer.addEventListener("click", function (event) {
-  const card = event.target.parentNode.parentNode.parentNode;
+const card = event.target.closest(".bg-white");
   if (!card) return;
 
   const companyName = card.querySelector(".companyName")?.innerText;
@@ -83,7 +83,7 @@ mainContainer.addEventListener("click", function (event) {
   const salary = card.querySelector(".salary")?.innerText;
   const description = card.querySelector(".description")?.innerText;
 
-  // ================= Interview =================
+  // Interview 
   if (event.target.classList.contains("interview-btn")) {
     card.querySelector(".status").innerText = "Interview";
 
@@ -212,7 +212,9 @@ function createCard(job) {
     "bg-white shadow-md hover:shadow-2xl hover:-translate-y-1 transition duration-300 rounded-xl p-6";
 
   div.innerHTML = `
-      <h3 class="companyName text-xl font-semibold text-gray-800">
+      <div class="flex justify-between">
+        <div>
+        <h3 class="companyName text-xl font-semibold text-gray-800">
         ${job.companyName}
       </h3>
       <p class="position text-gray-500 text-sm">${job.position}</p>
@@ -237,7 +239,9 @@ function createCard(job) {
         <button class="rejected-btn px-5 py-2 text-sm font-medium rounded-lg bg-red-500 text-white">
           Rejected
         </button>
-        <p class="delete-btn cursor-pointer text-red-500 font-medium">delete</p>
+        </div>
+        </div>
+        <p class="delete-btn cursor-pointer text-red-500 font-medium"><i class="fa-solid fa-trash-can"></i></p>
       </div>
     `;
 
